@@ -47,18 +47,22 @@ Welcome to my LeetCode automation repository! This project automatically pulls a
 | 342 | [Power of Four](https://leetcode.com/problems/power-of-four/) | 🟢 Easy | [Solution](solutions/Easy/0342-power-of-four) |
 | 424 | [Longest Repeating Character Replacement](https://leetcode.com/problems/longest-repeating-character-replacement/) | 🟡 Medium | [Solution](solutions/Medium/0424-longest-repeating-character-replacement) |
 | 485 | [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | 🟢 Easy | [Solution](solutions/Easy/0485-max-consecutive-ones) |
-| 792 | [Number of Matching Subsequences](https://leetcode.com/problems/number-of-matching-subsequences/) | 🟡 Medium | [Solution](solutions/Medium/0792-binary-search) |
-| 940 | [Distinct Subsequences II](https://leetcode.com/problems/distinct-subsequences-ii/) | 🔴 Hard | [Solution](solutions/Hard/0940-fruit-into-baskets) |
-| 1013 | [Partition Array Into Three Parts With Equal Sum](https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/) | 🟢 Easy | [Solution](solutions/Easy/1013-fibonacci-number) |
-| 1019 | [Next Greater Node In Linked List](https://leetcode.com/problems/next-greater-node-in-linked-list/) | 🟡 Medium | [Solution](solutions/Medium/1019-squares-of-a-sorted-array) |
-| 1046 | [Last Stone Weight](https://leetcode.com/problems/last-stone-weight/) | 🟢 Easy | [Solution](solutions/Easy/1046-max-consecutive-ones-iii) |
-| 1878 | [Get Biggest Three Rhombus Sums in a Grid](https://leetcode.com/problems/get-biggest-three-rhombus-sums-in-a-grid/) | 🟡 Medium | [Solution](solutions/Medium/1878-check-if-array-is-sorted-and-rotated) |
-| 1975 | [Maximum Matrix Sum](https://leetcode.com/problems/maximum-matrix-sum/) | 🟡 Medium | [Solution](solutions/Medium/1975-minimum-distance-to-the-target-element) |
-| 2210 | [Count Hills and Valleys in an Array](https://leetcode.com/problems/count-hills-and-valleys-in-an-array/) | 🟢 Easy | [Solution](solutions/Easy/2210-find-target-indices-after-sorting-array) |
-| 2238 | [Number of Times a Driver Was a Passenger](https://leetcode.com/problems/number-of-times-a-driver-was-a-passenger/) | 🟡 Medium | [Solution](solutions/Medium/2238-a-number-after-a-double-reversal) |
-| 2324 | [Product Sales Analysis IV](https://leetcode.com/problems/product-sales-analysis-iv/) | 🟡 Medium | [Solution](solutions/Medium/2324-find-triangular-sum-of-an-array) |
-| 2392 | [Build a Matrix With Conditions](https://leetcode.com/problems/build-a-matrix-with-conditions/) | 🔴 Hard | [Solution](solutions/Hard/2392-successful-pairs-of-spells-and-potions) |
-| 3150 | [Invalid Tweets II](https://leetcode.com/problems/invalid-tweets-ii/) | 🟢 Easy | [Solution](solutions/Easy/3150-shortest-and-lexicographically-smallest-beautiful-string) |
+| 509 | [Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) | 🟢 Easy | [Solution](solutions/Easy/1013-fibonacci-number) |
+| 704 | [Binary Search](https://leetcode.com/problems/binary-search/) | 🟢 Easy | [Solution](solutions/Easy/0792-binary-search) |
+| 904 | [Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/) | 🟡 Medium | [Solution](solutions/Medium/0940-fruit-into-baskets) |
+| 977 | [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/) | 🟢 Easy | [Solution](solutions/Easy/1019-squares-of-a-sorted-array) |
+| 1004 | [Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/) | 🟡 Medium | [Solution](solutions/Medium/1046-max-consecutive-ones-iii) |
+| 1752 | [Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/) | 🟢 Easy | [Solution](solutions/Easy/1878-check-if-array-is-sorted-and-rotated) |
+| 1848 | [Minimum Distance to the Target Element](https://leetcode.com/problems/minimum-distance-to-the-target-element/) | 🟢 Easy | [Solution](solutions/Easy/1975-minimum-distance-to-the-target-element) |
+| 2089 | [Find Target Indices After Sorting Array](https://leetcode.com/problems/find-target-indices-after-sorting-array/) | 🟢 Easy | [Solution](solutions/Easy/2210-find-target-indices-after-sorting-array) |
+| 2119 | [A Number After a Double Reversal](https://leetcode.com/problems/a-number-after-a-double-reversal/) | 🟢 Easy | [Solution](solutions/Easy/2238-a-number-after-a-double-reversal) |
+| 2221 | [Find Triangular Sum of an Array](https://leetcode.com/problems/find-triangular-sum-of-an-array/) | 🟡 Medium | [Solution](solutions/Medium/2324-find-triangular-sum-of-an-array) |
+| 2300 | [Successful Pairs of Spells and Potions](https://leetcode.com/problems/successful-pairs-of-spells-and-potions/) | 🟡 Medium | [Solution](solutions/Medium/2392-successful-pairs-of-spells-and-potions) |
+| 2904 | [Shortest and Lexicographically Smallest Beautiful String](https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/) | 🟡 Medium | [Solution](solutions/Medium/3150-shortest-and-lexicographically-smallest-beautiful-string) |
+| 3718 | [Smallest Missing Multiple of K](https://leetcode.com/problems/smallest-missing-multiple-of-k/) | 🟢 Easy | [Solution](solutions/Easy/4080-smallest-missing-multiple-of-k) |
+| 3875 | [Construct Uniform Parity Array I](https://leetcode.com/problems/construct-uniform-parity-array-i/) | 🟢 Easy | [Solution](solutions/Easy/4256-construct-uniform-parity-array-i) |
+| 4056 | [Number of Intersecting Interval Pairs I](https://leetcode.com/problems/number-of-intersecting-interval-pairs-i/) | 🟢 Easy | [Solution](solutions/Easy/4418-number-of-intersecting-interval-pairs-i) |
+| 4057 | [Number of Intersecting Interval Pairs II](https://leetcode.com/problems/number-of-intersecting-interval-pairs-ii/) | 🟡 Medium | [Solution](solutions/Medium/4417-number-of-intersecting-interval-pairs-ii) |
 
-_Total solved: 46_
+_Total solved: 50_
 <!-- LEETCODE-SOLUTIONS:END -->
