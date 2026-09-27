@@ -1,18 +1,21 @@
 """
 Two jobs in one pass:
 
-1. Moves each problem folder under solutions/ into an Easy/Medium/Hard
-   subfolder, based on LeetCode's public problem list (matched by the
-   numeric ID prefix in the folder name, e.g. "0167" in
-   "0167-two-sum-ii---input-array-is-sorted").
+1. Sorts every problem folder under solutions/ (whether currently loose at
+   the top level, or already inside Easy/Medium/Hard) into the CORRECT
+   Easy/Medium/Hard subfolder, matched by problem SLUG rather than by the
+   number in the folder name. joshcai/leetcode-sync's folder-name number is
+   not LeetCode's public problem number, so it can't be trusted for lookups
+   -- but the slug (the text after the number) reliably maps to LeetCode's
+   real problem data once hyphen-run artifacts are normalized away (e.g. a
+   title containing " - " gets folder-encoded as "---").
 
 2. Regenerates a "Solved Problems" table inside README.md, between two
-   HTML comment markers, listing every problem currently under solutions/
-   with its real LeetCode title, difficulty, and links to both the
-   original problem and your solution folder.
+   HTML comment markers, using LeetCode's real titles and problem numbers.
 
-Safe to run repeatedly. No LeetCode login required — everything here uses
-LeetCode's public problem list.
+Safe to run repeatedly, and will correct any previously mis-sorted folders.
+No LeetCode login required -- everything here uses LeetCode's public
+problem list.
 """
 
 import re
@@ -23,10 +26,10 @@ import requests
 
 SOLUTIONS_DIR = Path("solutions")
 README_PATH = Path("README.md")
-DIFFICULTY_FOLDERS = {"Easy", "Medium", "Hard"}
+DIFFICULTY_FOLDERS = ("Easy", "Medium", "Hard")
 ALL_PROBLEMS_URL = "https://leetcode.com/api/problems/all/"
 
-FOLDER_NAME_RE = re.compile(r"^(\d+)-")
+FOLDER_NAME_RE = re.compile(r"^(\d+)-(.+)$")
 LEVEL_TO_DIFFICULTY = {1: "Easy", 2: "Medium", 3: "Hard"}
 DIFFICULTY_EMOJI = {"Easy": "🟢", "Medium": "🟡", "Hard": "🔴"}
 
@@ -36,92 +39,108 @@ TABLE_END_MARKER = "<!-- LEETCODE-SOLUTIONS:END -->"
 HEADERS = {"User-Agent": "Mozilla/5.0 (leetcode-sync-bot)"}
 
 
+def normalize_slug(raw: str) -> str:
+    """Collapses hyphen runs (from folder-encoded punctuation like ' - ') and trims edges."""
+    return re.sub(r"-{2,}", "-", raw).strip("-").lower()
+
+
 def fetch_problem_data() -> dict:
-    """Returns {frontend_id (int): {'title': str, 'slug': str, 'difficulty': str}}"""
+    """Returns {slug: {'frontend_id': int, 'title': str, 'slug': str, 'difficulty': str}}"""
     resp = requests.get(ALL_PROBLEMS_URL, headers=HEADERS, timeout=30)
     resp.raise_for_status()
     data = resp.json()
 
-    mapping = {}
+    by_slug = {}
     for item in data.get("stat_status_pairs", []):
         stat = item.get("stat", {})
-        frontend_id = stat.get("frontend_question_id")
+        slug = stat.get("question__title_slug")
         level = item.get("difficulty", {}).get("level")
-        if frontend_id is None or level not in LEVEL_TO_DIFFICULTY:
+        frontend_id = stat.get("frontend_question_id")
+        if not slug or level not in LEVEL_TO_DIFFICULTY or frontend_id is None:
             continue
-        mapping[int(frontend_id)] = {
+        by_slug[slug] = {
+            "frontend_id": int(frontend_id),
             "title": stat.get("question__title", "Unknown"),
-            "slug": stat.get("question__title_slug", ""),
+            "slug": slug,
             "difficulty": LEVEL_TO_DIFFICULTY[level],
         }
-    return mapping
+    return by_slug
 
 
-def sort_folders(problem_data: dict) -> None:
+def find_problem_folders():
+    """Yields (current_path, folder_name) for every problem folder, wherever it currently sits."""
     if not SOLUTIONS_DIR.exists():
-        print("No solutions/ folder found, skipping sort step.")
         return
 
-    moved_count = 0
     for entry in sorted(SOLUTIONS_DIR.iterdir()):
-        if not entry.is_dir() or entry.name in DIFFICULTY_FOLDERS:
+        if not entry.is_dir():
             continue
+        if entry.name in DIFFICULTY_FOLDERS:
+            # Look one level inside each difficulty folder.
+            for inner in sorted(entry.iterdir()):
+                if inner.is_dir():
+                    yield inner
+        else:
+            yield entry
 
+
+def sort_folders(problem_by_slug: dict) -> dict:
+    """Moves folders to the correct difficulty subfolder. Returns {folder_name: info} for the table step."""
+    resolved = {}
+    moved_count = 0
+    unresolved_count = 0
+
+    for entry in list(find_problem_folders()):
         match = FOLDER_NAME_RE.match(entry.name)
         if not match:
-            print(f"Skipping '{entry.name}' (doesn't start with '<number>-')")
+            print(f"Skipping '{entry.name}' (doesn't match '<number>-<slug>' pattern)")
             continue
 
-        frontend_id = int(match.group(1))
-        info = problem_data.get(frontend_id)
+        slug_guess = normalize_slug(match.group(2))
+        info = problem_by_slug.get(slug_guess)
+
         if not info:
-            print(f"Skipping '{entry.name}' (problem #{frontend_id} not found)")
+            print(f"Could not resolve difficulty for '{entry.name}' (slug guess: '{slug_guess}')")
+            unresolved_count += 1
             continue
 
-        destination_folder = SOLUTIONS_DIR / info["difficulty"]
-        destination_folder.mkdir(exist_ok=True)
-        destination = destination_folder / entry.name
+        resolved[entry.name] = info
+        target_folder = SOLUTIONS_DIR / info["difficulty"]
+        target_path = target_folder / entry.name
 
-        if destination.exists():
-            print(f"'{destination}' already exists, skipping move for '{entry.name}'")
+        if entry.resolve() == target_path.resolve():
+            continue  # already in the right place
+
+        target_folder.mkdir(exist_ok=True)
+
+        if target_path.exists():
+            print(f"'{target_path}' already exists, skipping move for '{entry.name}'")
             continue
 
-        shutil.move(str(entry), str(destination))
+        shutil.move(str(entry), str(target_path))
         print(f"Moved '{entry.name}' -> {info['difficulty']}/")
         moved_count += 1
 
-    print(f"Sort step done. Moved {moved_count} folder(s).\n")
+    print(f"\nSort step done. Moved/corrected {moved_count} folder(s), "
+          f"{unresolved_count} unresolved.\n")
+    return resolved
 
 
-def build_solved_table(problem_data: dict) -> str:
+def build_solved_table(resolved: dict) -> str:
     rows = []
 
-    for difficulty in ("Easy", "Medium", "Hard"):
-        folder = SOLUTIONS_DIR / difficulty
-        if not folder.exists():
-            continue
+    for folder_name, info in resolved.items():
+        difficulty = info["difficulty"]
+        solution_link = f"{SOLUTIONS_DIR}/{difficulty}/{folder_name}"
+        problem_link = f"https://leetcode.com/problems/{info['slug']}/"
+        title_cell = f"[{info['title']}]({problem_link})"
 
-        for entry in sorted(folder.iterdir()):
-            if not entry.is_dir():
-                continue
-            match = FOLDER_NAME_RE.match(entry.name)
-            if not match:
-                continue
-
-            frontend_id = int(match.group(1))
-            info = problem_data.get(frontend_id)
-            title = info["title"] if info else entry.name
-            slug = info["slug"] if info else ""
-
-            problem_link = f"https://leetcode.com/problems/{slug}/" if slug else ""
-            solution_link = f"{SOLUTIONS_DIR}/{difficulty}/{entry.name}"
-
-            title_cell = f"[{title}]({problem_link})" if problem_link else title
-            rows.append(
-                (frontend_id, f"| {frontend_id} | {title_cell} | "
-                              f"{DIFFICULTY_EMOJI[difficulty]} {difficulty} | "
-                              f"[Solution]({solution_link}) |")
-            )
+        rows.append((
+            info["frontend_id"],
+            f"| {info['frontend_id']} | {title_cell} | "
+            f"{DIFFICULTY_EMOJI[difficulty]} {difficulty} | "
+            f"[Solution]({solution_link}) |",
+        ))
 
     rows.sort(key=lambda r: r[0])
 
@@ -166,12 +185,12 @@ def update_readme(table_markdown: str) -> None:
 
 def main() -> None:
     print("Fetching full LeetCode problem list...")
-    problem_data = fetch_problem_data()
-    print(f"Loaded data for {len(problem_data)} problems.\n")
+    problem_by_slug = fetch_problem_data()
+    print(f"Loaded data for {len(problem_by_slug)} problems.\n")
 
-    sort_folders(problem_data)
+    resolved = sort_folders(problem_by_slug)
 
-    table_markdown = build_solved_table(problem_data)
+    table_markdown = build_solved_table(resolved)
     update_readme(table_markdown)
 
 
