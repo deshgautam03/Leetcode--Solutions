@@ -19,4 +19,29 @@ jobs:
           leetcode-csrf-token: ${{ secrets.LEETCODE_CSRF_TOKEN }}
           leetcode-session: ${{ secrets.LEETCODE_SESSION }}
           destination-folder: 'solutions'
-          structure-by-difficulty: true
+
+      - name: Pull latest (sync step already pushed a commit)
+        run: git pull
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Sort solutions and update README table
+        run: python scripts/update_repo.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add solutions/ README.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: sort solutions and update README index"
+            git push
+          else
+            echo "Nothing to update this run."
+          fi
