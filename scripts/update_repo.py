@@ -114,8 +114,10 @@ def sort_folders(problem_by_slug: dict) -> dict:
         target_folder.mkdir(exist_ok=True)
 
         if target_path.exists():
-            print(f"'{target_path}' already exists, skipping move for '{entry.name}'")
-            continue
+            # A resubmission recreated this folder at its original (pre-sort) path.
+            # Treat the freshly-synced copy as authoritative and replace the old one.
+            print(f"'{target_path}' already exists — replacing with resubmitted copy of '{entry.name}'")
+            shutil.rmtree(target_path)
 
         shutil.move(str(entry), str(target_path))
         print(f"Moved '{entry.name}' -> {info['difficulty']}/")
