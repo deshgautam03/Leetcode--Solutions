@@ -49,9 +49,12 @@ Welcome to my LeetCode automation repository! This project automatically pulls a
 | 485 | [Max Consecutive Ones](https://leetcode.com/problems/max-consecutive-ones/) | 🟢 Easy | [Solution](solutions/Easy/0485-max-consecutive-ones) |
 | 509 | [Fibonacci Number](https://leetcode.com/problems/fibonacci-number/) | 🟢 Easy | [Solution](solutions/Easy/1013-fibonacci-number) |
 | 704 | [Binary Search](https://leetcode.com/problems/binary-search/) | 🟢 Easy | [Solution](solutions/Easy/0792-binary-search) |
+| 788 | [Rotated Digits](https://leetcode.com/problems/rotated-digits/) | 🟡 Medium | [Solution](solutions/Medium/0804-rotated-digits) |
+| 796 | [Rotate String](https://leetcode.com/problems/rotate-string/) | 🟢 Easy | [Solution](solutions/Easy/0812-rotate-string) |
 | 904 | [Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/) | 🟡 Medium | [Solution](solutions/Medium/0940-fruit-into-baskets) |
 | 977 | [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/) | 🟢 Easy | [Solution](solutions/Easy/1019-squares-of-a-sorted-array) |
 | 1004 | [Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/) | 🟡 Medium | [Solution](solutions/Medium/1046-max-consecutive-ones-iii) |
+| 1614 | [Maximum Nesting Depth of the Parentheses](https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/) | 🟢 Easy | [Solution](solutions/Easy/1737-maximum-nesting-depth-of-the-parentheses) |
 | 1752 | [Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/) | 🟢 Easy | [Solution](solutions/Easy/1878-check-if-array-is-sorted-and-rotated) |
 | 1848 | [Minimum Distance to the Target Element](https://leetcode.com/problems/minimum-distance-to-the-target-element/) | 🟢 Easy | [Solution](solutions/Easy/1975-minimum-distance-to-the-target-element) |
 | 2089 | [Find Target Indices After Sorting Array](https://leetcode.com/problems/find-target-indices-after-sorting-array/) | 🟢 Easy | [Solution](solutions/Easy/2210-find-target-indices-after-sorting-array) |
@@ -64,5 +67,5 @@ Welcome to my LeetCode automation repository! This project automatically pulls a
 | 4056 | [Number of Intersecting Interval Pairs I](https://leetcode.com/problems/number-of-intersecting-interval-pairs-i/) | 🟢 Easy | [Solution](solutions/Easy/4418-number-of-intersecting-interval-pairs-i) |
 | 4057 | [Number of Intersecting Interval Pairs II](https://leetcode.com/problems/number-of-intersecting-interval-pairs-ii/) | 🟡 Medium | [Solution](solutions/Medium/4417-number-of-intersecting-interval-pairs-ii) |
 
-_Total solved: 50_
+_Total solved: 53_
 <!-- LEETCODE-SOLUTIONS:END -->
