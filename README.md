@@ -60,6 +60,7 @@ Welcome to my LeetCode automation repository! This project automatically pulls a
 | 2089 | [Find Target Indices After Sorting Array](https://leetcode.com/problems/find-target-indices-after-sorting-array/) | 🟢 Easy | [Solution](solutions/Easy/2210-find-target-indices-after-sorting-array) |
 | 2119 | [A Number After a Double Reversal](https://leetcode.com/problems/a-number-after-a-double-reversal/) | 🟢 Easy | [Solution](solutions/Easy/2238-a-number-after-a-double-reversal) |
 | 2221 | [Find Triangular Sum of an Array](https://leetcode.com/problems/find-triangular-sum-of-an-array/) | 🟡 Medium | [Solution](solutions/Medium/2324-find-triangular-sum-of-an-array) |
+| 2267 | [ Check if There Is a Valid Parentheses String Path](https://leetcode.com/problems/check-if-there-is-a-valid-parentheses-string-path/) | 🔴 Hard | [Solution](solutions/Hard/2349--check-if-there-is-a-valid-parentheses-string-path) |
 | 2300 | [Successful Pairs of Spells and Potions](https://leetcode.com/problems/successful-pairs-of-spells-and-potions/) | 🟡 Medium | [Solution](solutions/Medium/2392-successful-pairs-of-spells-and-potions) |
 | 2904 | [Shortest and Lexicographically Smallest Beautiful String](https://leetcode.com/problems/shortest-and-lexicographically-smallest-beautiful-string/) | 🟡 Medium | [Solution](solutions/Medium/3150-shortest-and-lexicographically-smallest-beautiful-string) |
 | 3718 | [Smallest Missing Multiple of K](https://leetcode.com/problems/smallest-missing-multiple-of-k/) | 🟢 Easy | [Solution](solutions/Easy/4080-smallest-missing-multiple-of-k) |
@@ -67,5 +68,5 @@ Welcome to my LeetCode automation repository! This project automatically pulls a
 | 4056 | [Number of Intersecting Interval Pairs I](https://leetcode.com/problems/number-of-intersecting-interval-pairs-i/) | 🟢 Easy | [Solution](solutions/Easy/4418-number-of-intersecting-interval-pairs-i) |
 | 4057 | [Number of Intersecting Interval Pairs II](https://leetcode.com/problems/number-of-intersecting-interval-pairs-ii/) | 🟡 Medium | [Solution](solutions/Medium/4417-number-of-intersecting-interval-pairs-ii) |
 
-_Total solved: 53_
+_Total solved: 54_
 <!-- LEETCODE-SOLUTIONS:END -->
