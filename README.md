@@ -54,6 +54,7 @@ Welcome to my LeetCode automation repository! This project automatically pulls a
 | 904 | [Fruit Into Baskets](https://leetcode.com/problems/fruit-into-baskets/) | 🟡 Medium | [Solution](solutions/Medium/0940-fruit-into-baskets) |
 | 977 | [Squares of a Sorted Array](https://leetcode.com/problems/squares-of-a-sorted-array/) | 🟢 Easy | [Solution](solutions/Easy/1019-squares-of-a-sorted-array) |
 | 1004 | [Max Consecutive Ones III](https://leetcode.com/problems/max-consecutive-ones-iii/) | 🟡 Medium | [Solution](solutions/Medium/1046-max-consecutive-ones-iii) |
+| 1111 | [Maximum Nesting Depth of Two Valid Parentheses Strings](https://leetcode.com/problems/maximum-nesting-depth-of-two-valid-parentheses-strings/) | 🟡 Medium | [Solution](solutions/Medium/1208-maximum-nesting-depth-of-two-valid-parentheses-strings) |
 | 1614 | [Maximum Nesting Depth of the Parentheses](https://leetcode.com/problems/maximum-nesting-depth-of-the-parentheses/) | 🟢 Easy | [Solution](solutions/Easy/1737-maximum-nesting-depth-of-the-parentheses) |
 | 1752 | [Check if Array Is Sorted and Rotated](https://leetcode.com/problems/check-if-array-is-sorted-and-rotated/) | 🟢 Easy | [Solution](solutions/Easy/1878-check-if-array-is-sorted-and-rotated) |
 | 1848 | [Minimum Distance to the Target Element](https://leetcode.com/problems/minimum-distance-to-the-target-element/) | 🟢 Easy | [Solution](solutions/Easy/1975-minimum-distance-to-the-target-element) |
@@ -68,5 +69,5 @@ Welcome to my LeetCode automation repository! This project automatically pulls a
 | 4056 | [Number of Intersecting Interval Pairs I](https://leetcode.com/problems/number-of-intersecting-interval-pairs-i/) | 🟢 Easy | [Solution](solutions/Easy/4418-number-of-intersecting-interval-pairs-i) |
 | 4057 | [Number of Intersecting Interval Pairs II](https://leetcode.com/problems/number-of-intersecting-interval-pairs-ii/) | 🟡 Medium | [Solution](solutions/Medium/4417-number-of-intersecting-interval-pairs-ii) |
 
-_Total solved: 54_
+_Total solved: 55_
 <!-- LEETCODE-SOLUTIONS:END -->
